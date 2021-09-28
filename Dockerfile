@@ -69,11 +69,6 @@ COPY ./docker/$BUILD_ARGUMENT_ENV/php.ini /usr/local/etc/php/php.ini
 RUN a2enmod rewrite
 RUN a2enmod ssl
 
-# install Xdebug in case development or test environment
-COPY ./docker/general/do_we_need_xdebug.sh /tmp/
-COPY ./docker/dev/xdebug.ini /tmp/
-RUN chmod u+x /tmp/do_we_need_xdebug.sh && /tmp/do_we_need_xdebug.sh
-
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN chmod +x /usr/bin/composer

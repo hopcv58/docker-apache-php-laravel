@@ -11,10 +11,6 @@ endif
 laravel_user=-u www-data
 project=-p ${COMPOSE_PROJECT_NAME}
 service=${COMPOSE_PROJECT_NAME}:latest
-interactive:=$(shell [ -t 0 ] && echo 1)
-ifneq ($(interactive),1)
-	optionT=-T
-endif
 ifeq ($(GITLAB_CI),1)
 	# Determine additional params for phpunit in order to generate coverage badge on GitLabCI side
 	phpunitOptions=--coverage-text --colors=never
@@ -62,7 +58,7 @@ restart-staging: stop-staging start-staging
 restart-prod: stop-prod start-prod
 
 env-dev:
-	@make exec cmd="cp ./.env.dev ./.env"
+	@make exec-bash cmd="cp ./.env.dev ./.env"
 
 env-test-ci:
 	@make exec cmd="cp ./.env.test-ci ./.env"
@@ -104,7 +100,7 @@ composer-update:
 	@make exec-bash cmd="COMPOSER_MEMORY_LIMIT=-1 composer update"
 
 key-generate:
-	@make exec cmd="php artisan key:generate"
+	@make exec-bash cmd="php artisan key:generate"
 
 info:
 	@make exec cmd="php artisan --version"

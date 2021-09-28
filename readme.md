@@ -77,18 +77,11 @@ Note: Delete storage/mysql-data folder if it is exist.
 127.0.0.1    localhost
 ```
 
-3.Configure `/docker/dev/xdebug.ini` (optional):
+3.Install make (for Windows user only):
 
-- In case you need debug only requests with IDE KEY: PHPSTORM from frontend in your browser:
-```bash
-xdebug.start_with_request = no
-```
-Install locally in Firefox extension "Xdebug helper" and set in settings IDE KEY: PHPSTORM
+- Install chocolatey for windows from [here](https://chocolatey.org/install)
 
-- In case you need debug any request to an api (by default):
-```bash
-xdebug.start_with_request = yes
-```
+- Run ```choco install make```
 
 4.Build and start the image from your terminal:
 ```bash
